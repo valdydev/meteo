@@ -249,7 +249,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
     return AnimatedMeshGradient(
       colors: CouleursElite.meshColors,
       options: AnimatedMeshGradientOptions(
-              speed: 0.00005,
+              speed: 0.5,
             ),
     );
   }
