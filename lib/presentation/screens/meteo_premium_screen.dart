@@ -155,7 +155,7 @@ class MeteoPremiumScreen extends StatelessWidget {
             state.messageAttente?.toUpperCase() ?? "SYNCHRONISATION...",
             style: TextStyle(
               color: Colors.white.withOpacity(0.5),
-              fontSize: 12,
+              fontSize: 10,
               letterSpacing: 3,
             ),
           ).animate(onPlay: (c) => c.repeat(reverse: true))
@@ -180,7 +180,7 @@ class MeteoPremiumScreen extends StatelessWidget {
         ),
         // Bouton Recommencer Flottant Premium
         Positioned(
-          bottom: 30,
+          bottom: 20,
           left: 30,
           right: 30,
           child: GestureDetector(
@@ -236,7 +236,7 @@ class MeteoPremiumScreen extends StatelessWidget {
       child: GestureDetector(
         onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => DetailsScreen(meteo: meteo))),
         child: Container(
-          height: 180,
+          height: 170,
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.03),
             borderRadius: BorderRadius.circular(32),
@@ -247,7 +247,7 @@ class MeteoPremiumScreen extends StatelessWidget {
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
               child: Padding(
-                padding: const EdgeInsets.all(24),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
                 child: Row(
                   children: [
                     Expanded(
@@ -258,10 +258,12 @@ class MeteoPremiumScreen extends StatelessWidget {
                             meteo.name.toUpperCase(),
                             style: const TextStyle(
                               color: Colors.white,
-                              fontSize: 24,
+                              fontSize: 18,
                               fontWeight: FontWeight.w800,
                               letterSpacing: 1,
                             ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
                           const SizedBox(height: 8),
                           Text(
@@ -271,13 +273,15 @@ class MeteoPremiumScreen extends StatelessWidget {
                               fontSize: 12,
                               letterSpacing: 2,
                             ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
                           const Spacer(),
                           Row(
                             children: [
-                              _infoBento(Icons.water_drop_outlined, "${meteo.main.humidity}%"),
+                              Expanded(child: _infoBento(Icons.water_drop_outlined, "${meteo.main.humidity}%")),
                               const SizedBox(width: 20),
-                              _infoBento(Icons.air, "${meteo.wind.speed} km/h"),
+                              Expanded(child: _infoBento(Icons.air, "${meteo.wind.speed} km/h")),
                             ],
                           ),
                         ],
@@ -291,7 +295,7 @@ class MeteoPremiumScreen extends StatelessWidget {
                           "${meteo.main.temp.round()}°",
                           style: const TextStyle(
                             color: Color(0xFF00D2FF),
-                            fontSize: 52,
+                            fontSize: 44,
                             fontWeight: FontWeight.w100,
                             fontFamily: 'SF Pro Display',
                           ),
@@ -300,8 +304,8 @@ class MeteoPremiumScreen extends StatelessWidget {
                           tag: 'meteo_icon_${meteo.name}',
                           child: Image.network(
                             "https://openweathermap.org/img/wn/${meteo.weather.first.icon}@4x.png",
-                            width: 80,
-                            height: 80,
+                            width: 55,
+                            height: 55,
                           ),
                         ),
                       ],
@@ -321,12 +325,15 @@ class MeteoPremiumScreen extends StatelessWidget {
       children: [
         Icon(icon, color: Colors.white.withOpacity(0.3), size: 14),
         const SizedBox(width: 6),
-        Text(
-          text,
-          style: TextStyle(
-            color: Colors.white.withOpacity(0.6),
-            fontSize: 12,
-            fontWeight: FontWeight.w500,
+        Expanded(
+          child: Text(
+            text,
+            style: TextStyle(
+              color: Colors.white.withOpacity(0.6),
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+            ),
+            overflow: TextOverflow.ellipsis,
           ),
         ),
       ],
